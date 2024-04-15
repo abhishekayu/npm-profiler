@@ -115,7 +115,7 @@ ayu-free -g
 
 #
 
-******3. Size Analysis******
+******4. Size Analysis******
 
 Designed to calculate and display the sizes of directories and subdirectories within a specified root directory. It provides insights into the disk space consumption of various folders, excluding certain predefined folders like node_modules, dist etc.
 
