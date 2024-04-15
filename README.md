@@ -6,8 +6,16 @@ A Comprehensive Analysis Command-Line Analysis Tool for Projects.
 
 ## Installation 💻
 
+****Windows****
+
 ```bash
 npm install npm-profiler
+```
+
+****Mac****
+
+```bash
+npm install -g npm-profiler
 ```
 
 ## Features 🚀
