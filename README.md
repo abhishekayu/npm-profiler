@@ -10,7 +10,7 @@ A Comprehensive Analysis Command-Line Analysis Tool for Projects.
 npm install npm-profiler
 ```
 
-## Feature 🚀
+## Features 🚀
 ******1. Count Analysis******
 
 Designed to analyze files within a directory and provide insights such as the total number of files, lines of code, React components, React routers, and configuration files.
