@@ -5,7 +5,7 @@ const Table = require("cli-table");
 const rootDirectory = "./";
 async function getDirectorySize(dirPath) {
   let totalSize = 0;
-
+  
   const files = await fs.readdir(dirPath);
 
   for (const file of files) {
