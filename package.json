@@ -1,0 +1,53 @@
+{
+  "name": "npm-profiler",
+  "version": "1.0.0",
+  "description": "A Comprehensive Analysis Command-Line Analysis Tool for Projects.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm",
+    "profiler",
+    "analysis",
+    "tool",
+    "command-line",
+    "project",
+    "comprehensive",
+    "analysis",
+    "tool",
+    "code",
+    "metrics",
+    "api",
+    "analysis",
+    "unused",
+    "profiler",
+    "project analysis",
+    "development insights",
+    "code efficiency",
+    "performance profiling",
+    "comprehensive analysis",
+    "total lines of code",
+    "total react components",
+    "project metrics",
+    "project profiler",
+    "npm Profiler", "Command-Line Analysis Tool", "Code Metrics", "API Analysis", "Unused Code Detection", "Size Calculation", "Node.js Project Analysis", "Development Insights", "Code Efficiency", "Performance Profiling", "Comprehensive Analysis", "Total Lines of Code", "Total React Components", "Total React Routers", "Total Configuration Files", "Total Commented Lines", "Total Active console.log Statements", "Total Uncalled Functions", "Total Unused Packages", "Disk Space Consumption", "Folder Sizes", "Directory Analysis", "JavaScript Files", "File Analysis", "Fetch and Axios Calls", "Analysis Command", "Project Metrics", "Codebase Optimization", "Dependency Tracking", "Command-Line Interface (CLI)", "Static Code Analysis", "Codebase Health", "API Usage Insights", "Codebase Cleanup", "File Structure Analysis", "Performance Optimization", "Project Efficiency", "Dependency Management", "Project Maintenance", "Development Productivity", "Project Structure Evaluation", "Codebase Examination", "Functionality Assessment", "Project Organization Analysis", "JavaScript Code Insights", "Development Workflow Enhancement", "Package Dependency Insights", "File Size Analysis", "Codebase Refactoring", "Project Documentation Generation"
+  ],
+  "author": "Abhishek Verma",
+  "license": "MIT",
+  "bin": {
+    "ayu-count": "Number.js",
+    "ayu-api": "Fetch.js",
+    "ayu-free": "Nope.js",
+    "ayu-size": "Box.js"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.24.4",
+    "@babel/traverse": "^7.24.1",
+    "cli-table": "^0.3.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhishekayu/npm-profiler.git"
+  },
+  "homepage": "https://github.com/abhishekayu/npm-profiler/blob/main/README.md"
+}
