@@ -26,11 +26,13 @@ Designed to analyze files within a directory and provide insights such as the to
 
 ```
 #### It can provide you with:
-- Total Lines of Code: 5087
-- Total React Components: 14
-- Total React Routers: 3
-- Total Configuration Files: 1
-- Total Commented Lines: 11
+
+- **Total Lines of Code:**  `5087`
+- **Total React Components:**  `14`
+- **Total React Routers:**  `3`
+- **Total Configuration Files:**  `1`
+- **Total Commented Lines:**  `11`
+
 
 ### Usage
 
@@ -94,12 +96,13 @@ Designed to analyze JavaScript files in a directory and provide insights such as
 
 #### It can provide you with:
 
-- Total Active console.log Statements: 15
-- Total Commented console.log Statements: 2
-- Total Console.log Statements: 17
-- Total Uncalled Functions: 3
-- Total Commented Lines: 11
-- Total Unused Packages: 3
+- **Total Active console.log Statements:** `15`
+- **Total Commented console.log Statements:** `2`
+- **Total Console.log Statements:** `17`
+- **Total Uncalled Functions:** `3`
+- **Total Commented Lines:** `11`
+- **Total Unused Packages:** `3`
+
 
 ### Usage
 
@@ -133,9 +136,10 @@ Designed to calculate and display the sizes of directories and subdirectories wi
 
 #### It can provide you with:
 
-- Total size of the (/) without folders: 329.31 KB
-- Size of 'dist': 147.38 KB
-- Size of 'node_modules': 64.14 MB
+- **Total size of the (/) without folders:** `329.31 KB`
+- **Size of 'dist':** `147.38 KB`
+- **Size of 'node_modules':** `64.14 MB`
+
 
 ### Usage
 
