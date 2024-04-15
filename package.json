@@ -1,6 +1,6 @@
 {
   "name": "npm-profiler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Comprehensive Analysis Command-Line Analysis Tool for Projects.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
