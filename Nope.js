@@ -309,6 +309,16 @@ const saveTableToCSV = (data) => {
 };
 
 const args = process.argv.slice(2);
+
+if (args[0] == "-help") {
+  console.log("Usage: ayu-free [options]");
+  console.log("Options:");
+  console.log(
+    "  -g, Generate a report of unused packages, console.log statements, uncalled functions, and commented lines"
+  );
+  console.log("  -d, Download the report in a CSV file");
+  process.exit(0);
+}
 if (args.length === 0) {
   console.log("Please provide options: -g or -d");
 } else if (args[0] != "-g") {
