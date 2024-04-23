@@ -149,6 +149,14 @@ function saveTableToCSV(table) {
 }
 
 const args = process.argv.slice(2);
+
+if (args[0] == "-help") {
+  console.log("Usage: ayu-api [options]");
+  console.log("Options:");
+  console.log("  -g  Get the number of API calls in the project");
+  console.log("  -d  Save the result to a CSV file");
+  process.exit(0);
+}
 if (args.length === 0) {
   console.log("Please provide options: -g or -d");
 } else if (args[0] != "-g") {
