@@ -5,7 +5,7 @@ const Table = require("cli-table");
 const rootDirectory = "./";
 async function getDirectorySize(dirPath) {
   let totalSize = 0;
-  
+
   const files = await fs.readdir(dirPath);
 
   for (const file of files) {
@@ -217,6 +217,13 @@ async function saveToCsv(tableData, filePath) {
 }
 
 const args = process.argv.slice(2);
+if (args[0] == "-help") {
+  console.log("Usage: ayu-size [options]");
+  console.log("Options:");
+  console.log("  -g  Get the size of all folders in the current directory");
+  console.log("  -d  Save the output to a CSV file");
+  process.exit(0);
+}
 if (args.length === 0) {
   console.log("Please provide options: -g or -d");
 } else if (args[0] != "-g") {
@@ -238,4 +245,6 @@ if (args.includes("-g")) {
     .catch((error) => {
       console.error("An error occurred:", error);
     });
+} else {
+  console.error("Please provide options: -g or -d");
 }
