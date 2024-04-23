@@ -38,7 +38,8 @@
     "ayu-count": "Number.js",
     "ayu-api": "Fetch.js",
     "ayu-free": "Nope.js",
-    "ayu-size": "Box.js"
+    "ayu-size": "Box.js",
+    "ayu-console": "Coni.js"
   },
   "dependencies": {
     "@babel/parser": "^7.24.4",
