@@ -91,6 +91,19 @@ async function mainExecutions() {
       case "-c":
         options.countComments = true;
         break;
+
+      case "-help":
+        console.log(
+          "Usage: ayu-count [options]\n",
+          "Options:\n",
+          "-g, --global: Mandatory option to run the command\n",
+          "-n: Include node_modules\n",
+          "-w: Include whitespace\n",
+          "-d: Download CSV file\n",
+          "-c: Count commented lines"
+        );
+        break;
+
       default:
         console.error(`Unknown option: ${arg}`);
         process.exit(1);
