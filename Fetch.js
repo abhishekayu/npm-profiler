@@ -134,7 +134,7 @@ async function searchAndCountCalls() {
   );
   console.log("\n");
   console.log(table.toString());
-  process.stdout.write("\r\x1b[31mDone\x1b[0m  \n");
+  console.log("\x1b[32mWe are Done!\x1b[0m");
 
   return table;
 }
@@ -151,17 +151,20 @@ function saveTableToCSV(table) {
 const args = process.argv.slice(2);
 
 if (args[0] == "-help") {
-  console.log("Usage: ayu-api [options]");
-  console.log("Options:");
-  console.log("  -g  Get the number of API calls in the project");
-  console.log("  -d  Save the result to a CSV file");
+  console.log("\x1b[36mUsage: ayu-api [options]\x1b[0m");
+  console.log("\x1b[32mOptions:\x1b[0m");
+  console.log(
+    "  \x1b[31m-g\x1b[0m  Get the number of API calls in the project"
+  );
+  console.log("  \x1b[31m-d\x1b[0m  Save the result to a CSV file");
+
   process.exit(0);
 }
 if (args.length === 0) {
-  console.log("Please provide options: -g or -d");
-} else if (args[0] != "-g") {
-  console.error("-g is mandatory when using -d");
-  console.error("Please write: ayu-api -g or ayu-api -g -d");
+  console.log("\x1b[33mPlease provide options: -g or -d\x1b[0m");
+} else if (args[0] !== "-g") {
+  console.error("\x1b[31m-g is mandatory when using -d\x1b[0m");
+  console.error("\x1b[31mPlease write: ayu-api -g or ayu-api -g -d\x1b[0m");
   process.exit(1);
 }
 
