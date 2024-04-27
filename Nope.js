@@ -277,7 +277,7 @@ const main = async () => {
 
   console.log(table.toString());
 
-  process.stdout.write("\r\x1b[31mDone\x1b[0m  \n");
+  console.log("\x1b[32mWe are Done!\x1b[0m");
 
   const data = {
     activeConsoleLogsCount,
@@ -311,12 +311,13 @@ const saveTableToCSV = (data) => {
 const args = process.argv.slice(2);
 
 if (args[0] == "-help") {
-  console.log("Usage: ayu-free [options]");
-  console.log("Options:");
+  console.log("\x1b[36mUsage: ayu-free [options]\x1b[0m");
+  console.log("\x1b[32mOptions:\x1b[0m");
   console.log(
-    "  -g, Generate a report of unused packages, console.log statements, uncalled functions, and commented lines"
+    "  \x1b[31m-g:  List  unused packages, console.log statements, uncalled functions, and commented lines so on\x1b[0m"
   );
-  console.log("  -d, Download the report in a CSV file");
+  console.log("  \x1b[31m-d: Download the report in a CSV file\x1b[0m");
+
   process.exit(0);
 }
 if (args.length === 0) {
