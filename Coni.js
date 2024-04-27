@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
 
@@ -95,15 +96,18 @@ const main = async () => {
           console.error("Error reading file:", err);
           return;
         }
+
         const commentedData = data.replace(
-          /(?<!\/\*\s*|\/\/\s*)\bconsole\.log\(([^)]+)\);?(?!\s*\*\/)/g,
+          /(?<!\/\/\s*AYU\s*-\s*)\bconsole\.log\(([^)]+)\);?(?!\s*\*\/)/g,
           (match, group1) => {
-            if (!match.startsWith("//") && !match.startsWith("/*")) {
-              const lines = match.split("\n");
-              const commentedLines = lines.map((line) => `// ${line}`);
-              return commentedLines.join("\n");
-            }
-            return match;
+            const lines = match.split("\n");
+            const commentedLines = lines.map((line) => {
+              if (!line.trim().startsWith("// AYU -")) {
+                return `// AYU - ${line}`;
+              }
+              return line;
+            });
+            return commentedLines.join("\n");
           }
         );
 
@@ -111,7 +115,6 @@ const main = async () => {
           if (err) {
             console.error("Error writing file:", err);
           } else {
-            // console.log("Commented out console.log statements in:", filePath);
           }
         });
       });
@@ -130,15 +133,11 @@ const main = async () => {
           console.error("Error reading file:", err);
           return;
         }
-        // Updated regular expression to remove all occurrences of console.log
+
         let newData = data.replace(
-          /(?:(?<!\/\*)|\/\/)\s*console\.log\([^;]+\);?/g,
+          /\/\*\s*[\s\S]*?console\.log\([^;]+\);?[\s\S]*?\*\/|\/\/\s*console\.log\([^;]*\);?(?![^\/]*\*\/)|\/\/\s*AYU-\s*console\.log\([^;]*\);?|AYU-\s*console\.log\([^;]*\);?|\/\/[^\n]*console\.log\([^;]*\);?(?![^\/]*\*\/)|^\s*\/\/\s*data\s+is\s+store\s+in\s+mu\s+jkdjo\s+console\.log\([^;]+\);?|console\.log\([^;]+?\);?/gm,
           ""
         );
-
-        // Remove empty comments like "// this" and "/*   */"
-        newData = newData.replace(/(\/\/\s*$)|(\/\*\s*\*\/)/gm, "");
-        newData = newData.replace(/\n{3,}/g, "\n\n");
 
         newData = newData.replace(/^\s*[\r\n]/gm, "");
 
@@ -146,10 +145,6 @@ const main = async () => {
           if (err) {
             console.error("Error writing file:", err);
           } else {
-            // console.log(
-            //   "Removed all console.log statements and empty comments in:",
-            //   filePath
-            // );
           }
         });
       });
@@ -168,13 +163,17 @@ const main = async () => {
           console.error("Error reading file:", err);
           return;
         }
-        // Updated regular expression to remove all active occurrences of console.log
         let newData = data.replace(
-          /(?<!\/\*\s*|\/\/\s*)console\.log\([^;]+?\);?/g,
-          ""
+          /(?<!\/\/\s*AYU-\s*)console\.log\([^;]+?\);?(?![^\/]*\*\/)|\/\/\s*console\.log\([^;]+?\);?/g,
+          (match, p1) => {
+            if (match.startsWith("//")) {
+              return match;
+            } else {
+              return "";
+            }
+          }
         );
 
-        // Remove empty comments like "// this" and "/*   */"
         newData = newData.replace(/(\/\/\s*$)|(\/\*\s*\*\/)/gm, "");
         newData = newData.replace(/\n{3,}/g, "\n\n");
 
@@ -182,10 +181,6 @@ const main = async () => {
           if (err) {
             console.error("Error writing file:", err);
           } else {
-            // console.log(
-            //   "Removed all active console.log statements and empty comments in:",
-            //   filePath
-            // );
           }
         });
       });
@@ -204,23 +199,55 @@ const main = async () => {
           console.error("Error reading file:", err);
           return;
         }
-        // Updated regular expression to remove only commented occurrences of console.log
         let newData = data.replace(
-          /\/\/[^\n]*console\.log\([^;]+\);?|\/\*[\s\S]*?\*\/\s*/g,
+          /\/\/[^\n]*console\.log\([^;]+\);?.*(?:\r?\n|$)|\/\*[\s\S]*?\*\/\s*/g,
           ""
         );
 
-        // Remove empty lines
         newData = newData.replace(/^\s*[\r\n]/gm, "");
 
         fs.writeFile(filePath, newData, "utf8", (err) => {
           if (err) {
             console.error("Error writing file:", err);
           } else {
-            // console.log(
-            //   "Removed all commented console.log statements and empty block comments in:",
-            //   filePath
-            // );
+          }
+        });
+      });
+    }
+  }
+
+  function uncommentConsoleLogs(filePath) {
+    if (
+      filePath.endsWith(".js") ||
+      filePath.endsWith(".jsx") ||
+      filePath.endsWith(".ts") ||
+      filePath.endsWith(".tsx")
+    ) {
+      fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+          console.error("Error reading file:", err);
+          return;
+        }
+
+        const uncommentedData = data.replace(
+          /\/\/\s*AYU\s*-\s*(.*)$/gm,
+          (match, group1) => {
+            const indentation = group1.match(/^\s*/)[0];
+            const uncommentedLine = group1
+              .replace(/\/\/\s*AYU\s*-\s*/, "")
+              .trim()
+              .split("\n")
+              .map((line, index) =>
+                index === 0 ? line.trim() : `${indentation}${line.trim()}`
+              )
+              .join("\n");
+            return uncommentedLine;
+          }
+        );
+        fs.writeFile(filePath, uncommentedData, "utf8", (err) => {
+          if (err) {
+            console.error("Error writing file:", err);
+          } else {
           }
         });
       });
@@ -231,7 +258,7 @@ const main = async () => {
   const args = process.argv.slice(2);
 
   if (args.length !== 1) {
-    console.error("Please pass only one argument at a time.");
+    console.error("\x1b[31mPlease pass only one argument at a time\x1b[0m");
     process.exit(1);
   }
 
@@ -239,27 +266,48 @@ const main = async () => {
 
   switch (action) {
     case "-gc":
+      console.log(
+        "Commenting out all console.log statements are in progress..."
+      );
       walkDir(projectDirectory, commentOutConsoleLogs);
+      console.log("\x1b[32mWe are Done!\x1b[0m");
       break;
     case "-gr":
+      console.log("Removing all console.log statements are in progress...");
       walkDir(projectDirectory, removeAllConsoleLogs);
+      console.log("\x1b[32mWe are Done!\x1b[0m");
       break;
     case "-gar":
+      console.log(
+        "Removing all active console.log statements are in progress..."
+      );
       walkDir(projectDirectory, removeAllActiveConsoleLogs);
+      console.log("\x1b[32mWe are Done!\x1b[0m");
       break;
     case "-gcr":
+      console.log(
+        "Removing all inactive/commented console.log statements are in progress..."
+      );
       walkDir(projectDirectory, removeCommentedConsoleLogs);
+      console.log("\x1b[32mWe are Done!\x1b[0m");
+      break;
+
+    case "-guc":
+      console.log("Uncommenting all console.log statements are in progress...");
+      walkDir(projectDirectory, uncommentConsoleLogs);
+      console.log("\x1b[32mWe are Done!\x1b[0m");
       break;
 
     case "-help":
       console.log(
-        "Usage: ayu-console [option]\n\nOptions:\n  -gc\tComment out all console.log statements\n  -gr\tRemove all console.log statements\n  -gar\tRemove all active console.log statements\n  -gcr\tRemove all inactive/commented console.log statements"
+        "Usage: \x1b[33mayu-console [option]\x1b[0m\n\nOptions:\n  \r\x1b[31m-gc\x1b[0m\tComment out all console.log statements\n  \r\x1b[31m-gr\x1b[0m\tRemove all console.log statements\n  \r\x1b[31m-gar\x1b[0m\tRemove all active console.log statements\n  \r\x1b[31m-gcr\x1b[0m\tRemove all inactive/commented console.log statements \n  \r\x1b[31m-guc\x1b[0m\tUncomment all console.log statements\n \r\x1b[31m-help\x1b[0m\tDisplay this help message \n \n \r\x1b[31mNote : Uncommented console.log statements will only work if they were commented out by this tool.\r\x1b[31ms"
       );
       break;
     default:
       console.error(
-        "Invalid argument. Please use one of: -gc, -gr, -gar, -gcr"
+        "\x1b[31mInvalid argument. Please use one of: -gc, -gr, -gar, -gcr, -guc, -help\x1b[0m"
       );
+
       process.exit(1);
   }
 };
