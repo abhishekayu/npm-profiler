@@ -218,17 +218,20 @@ async function saveToCsv(tableData, filePath) {
 
 const args = process.argv.slice(2);
 if (args[0] == "-help") {
-  console.log("Usage: ayu-size [options]");
-  console.log("Options:");
-  console.log("  -g  Get the size of all folders in the current directory");
-  console.log("  -d  Save the output to a CSV file");
+  console.log("\x1b[36mUsage: ayu-size [options]\x1b[0m");
+  console.log("\x1b[32mOptions:\x1b[0m");
+  console.log(
+    "  \x1b[31m-g\x1b[0m  Get the size of all folders in the current directory"
+  );
+  console.log("  \x1b[31m-d\x1b[0m  Save the output to a CSV file");
+
   process.exit(0);
 }
 if (args.length === 0) {
-  console.log("Please provide options: -g or -d");
-} else if (args[0] != "-g") {
-  console.error("-g is mandatory when using -d");
-  console.error("Please write: ayu-size -g or ayu-size -g -d");
+  console.log("\x1b[33mPlease provide options: -g or -d\x1b[0m");
+} else if (args[0] !== "-g") {
+  console.error("\x1b[31m-g is mandatory when using -d\x1b[0m");
+  console.error("\x1b[31mPlease write: ayu-size -g or ayu-size -g -d\x1b[0m");
   process.exit(1);
 }
 
@@ -240,11 +243,12 @@ if (args.includes("-g")) {
       if (args.includes("-d")) {
         await saveToCsv([...table, ...res], "Folder-sizes.csv");
       }
-      process.stdout.write("\r\x1b[31mDone\x1b[0m  \n");
+      console.log("\x1b[32mWe are Done!\x1b[0m");
     })
     .catch((error) => {
       console.error("An error occurred:", error);
     });
 } else {
-  console.error("Please provide options: -g or -d");
+  console.error("\x1b[31mPlease provide options: -g or -d\x1b[0m");
+  process.exit(1);
 }
