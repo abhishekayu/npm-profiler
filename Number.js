@@ -55,7 +55,7 @@ async function main() {
     console.error("An error occurred:", error);
   } finally {
     clearInterval(loadingInterval);
-    process.stdout.write("\r\x1b[31mDone\x1b[0m  \n");
+    console.log("\x1b[32mWe are Done!\x1b[0m");
   }
 }
 
@@ -94,14 +94,15 @@ async function mainExecutions() {
 
       case "-help":
         console.log(
-          "Usage: ayu-count [options]\n",
-          "Options:\n",
-          "-g, --global: Mandatory option to run the command\n",
-          "-n: Include node_modules\n",
-          "-w: Include whitespace\n",
-          "-d: Download CSV file\n",
-          "-c: Count commented lines"
+          "\x1b[36mUsage: ayu-count [options]\x1b[0m\n",
+          "\x1b[32mOptions:\x1b[0m\n",
+          "\x1b[31m-g:\x1b[0m Mandatory option to run the command\n",
+          "\x1b[31m-n:\x1b[0m Include node_modules\n",
+          "\x1b[31m-w:\x1b[0m Include whitespace\n",
+          "\x1b[31m-d:\x1b[0m Download CSV file\n",
+          "\x1b[31m-c:\x1b[0m Count commented lines"
         );
+
         break;
 
       default:
@@ -111,9 +112,11 @@ async function mainExecutions() {
   });
 
   if (!options.global) {
-    console.error("-g is mandatory when using -n, -w, -c, or -d");
     console.error(
-      "Please write: ayu-count -g or ayu-count -g -n or ayu-count -g -w or ayu-count -g -d or ayu-count -g -n -w -d or ayu-count -g -c"
+      "\n \r\x1b[31m -g is mandatory when using -n, -w, -c, or -d\x1b[0m"
+    );
+    console.error(
+      "\r\x1b[31m Please write: ayu-count -g or ayu-count -g -n or ayu-count -g -w or ayu-count -g -d or ayu-count -g -n -w -d or ayu-count -g -c\x1b[0m"
     );
     process.exit(1);
   }
