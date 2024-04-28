@@ -123,10 +123,32 @@ Designed to analyze JavaScript files in a directory and provide insights such as
 ```bash
 ayu-free -g
 ```
+******4. Console Analysis******
+
+Designed to manipulations on JavaScript, TypeScript, JSX, and TSX files within a specified directory. It offers options to comment out, remove, or uncomment console.log statements in these files. It's designed to aid in code maintenance tasks, such as cleaning up debug statements before deployment or preparing code for production.
+
+### Usage
+
+To use **ayu-console**, run the following command:
+
+```bash
+ayu-console [option]
+```
+**options:**
+
+- gc: Comment out all console.log statements.
+- gr: Remove all console.log statements.
+- gar: Remove all active console.log statements.
+- gcr: Remove all inactive/commented console.log statements.
+- guc: Uncomment all console.log statements.
+- help: Display this help message.
+
+*****Note*****
+Uncommented console.log statements will only work if they were commented out by this tool.
 
 #
 
-******4. Size Analysis******
+******5. Size Analysis******
 
 Designed to calculate and display the sizes of directories and subdirectories within a specified root directory. It provides insights into the disk space consumption of various folders, excluding certain predefined folders like node_modules, dist etc.
 
